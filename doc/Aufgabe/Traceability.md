@@ -1,11 +1,15 @@
 # Anwendungsfälle für die zu entwickelnde Software
 ---
-UC1. Start Game
-UC2. Place Stone
-UC3. Check Winner
-UC4. Svae Game
-UC5. End Game
-UC6. Load Game
+| use case | name |
+| :--------: | ------- |
+|1 | Start Game |
+| 2 | Place Stone |
+| 3 | Check Winner|
+|4 | Svae Game |
+| 5 | End Game |
+| 6 | Load Game|
+
+
 ---
 
 ---
