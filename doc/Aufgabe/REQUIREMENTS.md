@@ -9,18 +9,13 @@
 
 ## Aufgabe/Abgabe (englisch)
 
-Ubiquitous Requirements
 1. the system SHALL support two players, one being human and the other AI/CPU.
 2. the system SHALL use a game board of size 8x8.
 3. the system SHALL support the two colours black and white
 4. the system SHALL always keep the centre four squares of the board occupied diagonally with two black and two white pieces.
 5. the system SHALL display the current board.
-
-State-driven requirements
 6. WHILE the game starts, black SHALL always make the first move.
 7. WHILE it is a player's turn, the player SHALL place a piece adjacent to at least one other piece.
-
-Event-driven requirements
 8. WHEN a new game begins, the human player SHALL be able to choose his colour.
 9. WHEN a player makes a move, the piece SHALL be placed on a square that has its own colour on the line.
 10. WHEN a player selects an invalid square, the system SHALL not make a move (and issue an error message).
@@ -32,18 +27,13 @@ Event-driven requirements
 
 ## Aufgabe/Abgabe (deutsch)
 
-Ubiquitous Requirements
 1. Das System MUSS zwei Spieler unterstützen, wobei einer Mensch und der andere KI/CPU ist.
 2. Das System MUSS ein Spielbrett der Größe 8x8 verwenden.
 3. Das System MUSS die zwei Farben Schwarz und Weiß unterstützen.
 4. Das System MUSS die mittleren vier Felder des Bretts immer mit zwei schwarzen und zwei weißen Steinen diagonal belegt halten.
 5. Das System MUSS das aktuelle Spielfeld anzeigen.
-
-State-driven Requirements (Zustandsabhängig)
 6. WENN das Spiel beginnt, MUSS Schwarz immer den ersten Zug machen.
 7. WENN ein Spieler am Zug ist, MUSS der Spieler einen Stein an mindestens einen anderen Stein angrenzend anlegen.
-
-Event-driven Requirements (Ereignisabhängig)
 8. SOBALD ein neues Spiel beginnt, MUSS der menschliche Spieler seine Farbe auswählen können.
 9. SOBALD ein Spieler einen Zug macht, MUSS der Stein auf einem Feld platziert werden, welcher eine eigene Farbe auf der Linie vorliegend hat.
 10. SOBALD ein Spieler ein ungültiges Feld auswählt, MUSS das System keinen Zug machen (und eine Fehlermeldung ausgeben).
