@@ -1,13 +1,9 @@
 image: debian:bullseye
 
 build:
- stage: build
- tags: [Linux]
-
- before_script:
-  - apt-get update && apt-get install -y make gcc && apt install -y valgrind
-  - apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev libjsoncpp-dev
- script:
-  - make
-  - make debug
-
+  stage: build
+  tags: [Linux]
+  before_script:
+    - apt-get update && apt-get install -y make gcc
+  script:
+    - make
