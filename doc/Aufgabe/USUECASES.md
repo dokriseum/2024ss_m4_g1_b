@@ -90,3 +90,26 @@
 |                        | 4. System loads the selected game state. |
 | **Postconditions**     | Game state is loaded and users can resume play from where they left off. |
 
+---
+
+```mermaid
+graph TD;
+    StartGame(Start Game) --> ChooseColour(Choose Colour?);
+    ChooseColour -->|Black| PlaceStone(User Places Stone);
+    ChooseColour -->|White| PlaceStone;
+    PlaceStone --> SystemAllowsPlacingStone(System Allows Placing Stone);
+    SystemAllowsPlacingStone -->|Game over| GameOver(Game over);
+    SystemAllowsPlacingStone -->|Check Black Player Winner| CheckBlackWinner(Check Black Player Winner);
+    CheckBlackWinner -->|yes| GameOver;
+    CheckBlackWinner -->|no| ReturnToUser(Return to User Places Stone);
+    ReturnToUser --> PlaceStone;
+    SystemAllowsPlacingStone -->|Check White Player Winner| CheckWhiteWinner(Check White Player Winner);
+    CheckWhiteWinner -->|yes| GameOver;
+    CheckWhiteWinner -->|no| ReturnToUser;
+    GameOver --> UserSavesGame(User Saves Game);
+    UserSavesGame -->|Return| LoadGame(Load Game);
+
+```
+
+---
+
