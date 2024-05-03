@@ -4,6 +4,8 @@ build:
   stage: build
   tags: [Linux]
   before_script:
+    - cd /home/bakir/Desktop/2024ss_m4_g1_b
     - apt-get update && apt-get install -y make gcc
   script:
     - make
+
