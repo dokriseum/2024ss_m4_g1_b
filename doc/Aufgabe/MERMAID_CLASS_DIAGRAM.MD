@@ -1,37 +1,37 @@
 classDiagram
     class Game {
-        start()
-        saveGame()
-        loadGame()
-        updateGameState()
+        +start()
+        +saveGame()
+        +loadGame()
+        +updateGameState()
     }
     class Board {
-        initialize()
-        placeStone(int, int, char)
-        flipStones(int, int)
-        checkFull()
-        calculateScore()
+        +initialize()
+        +placeStone(int, int, char)
+        +flipStones(int, int)
+        +checkFull()
+        +calculateScore()
     }
     class Player {
         <<abstract>>
-        makeMove()
+        +makeMove()
     }
     class HumanPlayer {
-        selectMove()
+        +selectMove()
     }
     class AIPlayer {
-        calculateBestMove()
+        +calculateBestMove()
     }
     class GameUI {
-        displayBoard()
-        displayScore()
-        promptMove()
-        showEndGameResults()
+        +displayBoard()
+        +displayScore()
+        +promptMove()
+        +showEndGameResults()
     }
     class FileManager {
-        saveToFile()
-        loadFromFile()
-        logStats()
+        +saveToFile()
+        +loadFromFile()
+        +logStats()
     }
 
     Game "1" --> "1" Board : contains
