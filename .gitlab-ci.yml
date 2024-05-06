@@ -5,7 +5,6 @@ build:
   tags: [Linux]
   before_script:
     - apt-get update && apt-get install -y make gcc
-    - cd src
   script:
     - make
 
