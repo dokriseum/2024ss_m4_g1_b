@@ -1,7 +1,3 @@
-//
-// Created by bakir on 17.05.2024.
-//
-
 #ifndef GAME_H
 #define GAME_H
 

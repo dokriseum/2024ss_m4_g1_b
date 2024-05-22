@@ -1,7 +1,3 @@
-//
-// Created by bakir on 17.05.2024.
-//
-
 #ifndef OTHELLOGAME_H
 #define OTHELLOGAME_H
 
