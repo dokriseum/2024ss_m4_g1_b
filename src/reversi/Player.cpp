@@ -3,12 +3,16 @@
 #include <iostream>
 #include <cctype>
 
-extern GameManager* gameManager; // Forward declaration of gameManager instance
+extern GameManager* gameManager; // Vorwärtsdeklaration von gameManager
 
 Player::Player(char piece) : piece(piece) {}
 
 char Player::getPiece() const {
     return piece;
+}
+
+Player::~Player() {
+    // Leerer Destruktor für Basisklasse
 }
 
 HumanPlayer::HumanPlayer(char piece) : Player(piece) {}
@@ -22,15 +26,13 @@ void HumanPlayer::makeMove(Board& board) {
             std::string filename;
             std::cout << "Enter the filename to save the game: ";
             std::cin >> filename;
-            gameManager->saveGame(filename); // Use gameManager to save the game
+            gameManager->saveGame(filename); // Verwenden Sie gameManager, um das Spiel zu speichern
             std::cout << "Game state saved to " << filename << std::endl;
-            continue; // Ask for the next move after saving
-        }
-        else if (move == "q") {
+            continue; // Nach dem Speichern nach dem nächsten Zug fragen
+        } else if (move == "q") {
             std::cout << "Returning to main menu..." << std::endl;
-            exit(0); // Exit the game
-        }
-        else if (move.length() == 2 && isalpha(move[0]) && isdigit(move[1])) {
+            exit(0); // Spiel beenden
+        } else if (move.length() == 2 && isalpha(move[0]) && isdigit(move[1])) {
             int row = move[1] - '1';
             int col = toupper(move[0]) - 'A';
             if (board.isValidMove(row, col, piece, piece == 'B' ? 'W' : 'B')) {

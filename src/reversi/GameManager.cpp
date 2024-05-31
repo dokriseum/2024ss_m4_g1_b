@@ -14,6 +14,12 @@ GameManager::GameManager() {
     computer = new ComputerPlayer(cpuPiece);
 }
 
+GameManager::~GameManager() {
+    // Destructor to free dynamically allocated memory
+    delete player;
+    delete computer;
+}
+
 void GameManager::switchPlayer() {
     currentPlayer = (currentPlayer == playerPiece) ? cpuPiece : playerPiece;
 }
@@ -36,11 +42,9 @@ char GameManager::getWinner() const {
     int cpuCount = board.countPieces(cpuPiece);
     if (playerCount > cpuCount) {
         return playerPiece;
-    }
-    else if (cpuCount > playerCount) {
+    } else if (cpuCount > playerCount) {
         return cpuPiece;
-    }
-    else {
+    } else {
         return 'T'; // T for tie
     }
 }
@@ -59,8 +63,7 @@ void GameManager::saveGame(const std::string& filename) {
         outFile << cpuPiece << std::endl;
         outFile.close();
         std::cout << "Game state saved to " << filename << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Unable to open file for saving." << std::endl;
     }
 }
@@ -74,8 +77,7 @@ void GameManager::loadGame(const std::string& filename) {
                 for (int j = 0; j < 8; ++j) {
                     board.setPiece(i, j, line[j]);
                 }
-            }
-            else {
+            } else {
                 std::cout << "File format error in board data." << std::endl;
                 inFile.close();
                 return;
@@ -83,32 +85,28 @@ void GameManager::loadGame(const std::string& filename) {
         }
         if (std::getline(inFile, line) && line.length() == 1) {
             currentPlayer = line[0];
-        }
-        else {
+        } else {
             std::cout << "File format error in current player data." << std::endl;
             inFile.close();
             return;
         }
         if (std::getline(inFile, line) && line.length() == 1) {
             playerPiece = line[0];
-        }
-        else {
+        } else {
             std::cout << "File format error in player piece data." << std::endl;
             inFile.close();
             return;
         }
         if (std::getline(inFile, line) && line.length() == 1) {
             cpuPiece = line[0];
-        }
-        else {
+        } else {
             std::cout << "File format error in CPU piece data." << std::endl;
             inFile.close();
             return;
         }
         inFile.close();
         std::cout << "Game loaded from " << filename << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Unable to open file for loading." << std::endl;
     }
 }
@@ -121,8 +119,7 @@ void GameManager::chooseColour() {
         playerPiece = 'B';
         cpuPiece = 'W';
         currentPlayer = playerPiece;
-    }
-    else {
+    } else {
         playerPiece = 'W';
         cpuPiece = 'B';
         currentPlayer = cpuPiece;
@@ -136,8 +133,7 @@ void GameManager::chooseColour() {
 void GameManager::printCurrentPlayer() const {
     if (currentPlayer == playerPiece) {
         std::cout << "It's your turn." << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Computer's turn." << std::endl;
     }
 }
@@ -149,8 +145,7 @@ void GameManager::play() {
         printCurrentPlayer();  // Print whose turn it is
         if (currentPlayer == playerPiece) {
             player->makeMove(board);
-        }
-        else {
+        } else {
             computer->makeMove(board);
         }
         board.display();
@@ -159,11 +154,9 @@ void GameManager::play() {
     char winner = getWinner();
     if (winner == playerPiece) {
         std::cout << "You win!" << std::endl;
-    }
-    else if (winner == cpuPiece) {
+    } else if (winner == cpuPiece) {
         std::cout << "Computer wins!" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "It's a tie!" << std::endl;
     }
 }

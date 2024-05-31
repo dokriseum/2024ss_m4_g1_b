@@ -1,0 +1,29 @@
+Board.h:4:0: information: Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <vector>
+^
+Board.h:5:0: information: Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <iostream>
+^
+Player.h:4:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <string>
+^
+GameManager.h:13:0: information: Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <fstream>
+^
+GameManager.h:14:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <string>
+^
+GameManager.cpp:2:0: information: Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <iostream>
+^
+GameManager.cpp:3:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <string>
+^
+GameManager.cpp:4:0: information: Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <fstream>
+^
+Player.cpp:4:0: information: Include file: <cctype> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <cctype>
+^
+nofile:0:0: information: Active checkers: 4/802 (use --checkers-report=<filename> to see details) [checkersReport]
+

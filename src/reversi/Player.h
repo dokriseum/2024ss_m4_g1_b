@@ -1,16 +1,9 @@
-/**
- * @file Player.h
- * @brief Defines the Player base class and its derived classes HumanPlayer and ComputerPlayer.
- *
- * This file contains the declarations and implementations of the Player,
- * HumanPlayer, and ComputerPlayer classes. These classes handle player
- * interactions, moves, and game logic execution based on player type.
- */
-
 #pragma once
 
 #include "Board.h"
 #include <string>
+
+class GameManager; // Vorwärtsdeklaration von GameManager
 
 /**
  * @class Player
@@ -37,6 +30,11 @@ public:
      * @return Character representing the player's piece.
      */
     char getPiece() const;
+
+    /**
+     * @brief Virtual destructor for the Player class.
+     */
+    virtual ~Player(); // Virtueller Destruktor hinzugefügt
 
 protected:
     char piece; ///< Character representing the player's piece type ('B' or 'W').

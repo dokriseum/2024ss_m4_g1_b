@@ -30,6 +30,11 @@ public:
     GameManager();
 
     /**
+     * @brief Destructor to clean up dynamically allocated memory.
+     */
+    ~GameManager();
+
+    /**
      * @brief Starts and runs the main game loop.
      *
      * Manages turns, displays the board, checks game over conditions,

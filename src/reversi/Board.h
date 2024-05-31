@@ -1,11 +1,3 @@
-/**
- * @file Board.h
- * @brief Defines the Board class for a Reversi game.
- *
- * This file contains the declarations of the Board class, which manages the game board,
- * including piece placement, move validation, and displaying the board.
- */
-
 #ifndef BOARD_H
 #define BOARD_H
 
