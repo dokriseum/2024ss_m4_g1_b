@@ -113,9 +113,9 @@ void GameManager::loadGame(const std::string& filename) {
     }
 }
 
-void GameManager::chooseColor() {
+void GameManager::chooseColour() {
     char choice;
-    std::cout << "Choose your color (B for Black, W for White): ";
+    std::cout << "Choose your colour (B for Black, W for White): ";
     std::cin >> choice;
     if (toupper(choice) == 'B') {
         playerPiece = 'B';
@@ -143,7 +143,7 @@ void GameManager::printCurrentPlayer() const {
 }
 
 void GameManager::play() {
-    chooseColor();
+    chooseColour();
     board.display();
     while (!isGameOver()) {
         printCurrentPlayer();  // Print whose turn it is
