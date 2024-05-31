@@ -1,5 +1,5 @@
 # Name des ausführbaren Programms
-PROG = game
+PROG = main
 
 # Compiler, der verwendet werden soll
 CC = gcc
@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -std=c++98
 LDFLAGS =
 
 # Liste der Quelldateien
-SRCS = game.cpp main.cpp
+SRCS = Board.cpp GameManager.cpp Menu.cpp Player.cpp main.cpp
 
 # Umwandlung der Quelldateien in Objektdateien
 OBJS = $(SRCS:.cpp=.o)

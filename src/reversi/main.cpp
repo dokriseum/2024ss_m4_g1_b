@@ -1,11 +1,7 @@
-#include <iostream>
-#include "game.h"
+#include "Menu.h"
 
 int main() {
-    OthelloGame game;
-    game.play();
+    Menu menu;
+    menu.run();
     return 0;
 }
-
-
-
