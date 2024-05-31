@@ -1,0 +1,3 @@
+/Users/dokriseum/Project/CE-M_Validierung_Verifikation/Repository/2024ss_m4_g1_b/src/reversi/build/CMakeFiles/ReversiGame.dir
+/Users/dokriseum/Project/CE-M_Validierung_Verifikation/Repository/2024ss_m4_g1_b/src/reversi/build/CMakeFiles/edit_cache.dir
+/Users/dokriseum/Project/CE-M_Validierung_Verifikation/Repository/2024ss_m4_g1_b/src/reversi/build/CMakeFiles/rebuild_cache.dir

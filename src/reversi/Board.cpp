@@ -1,7 +1,7 @@
 #include "Board.h"
 
 Board::Board() {
-    board = vector<vector<char>>(8, vector<char>(8, ' '));
+    board = vector<vector<char> >(8, vector<char>(8, ' ')); // Korrigierte Syntax
     board[3][3] = 'W';
     board[3][4] = 'B';
     board[4][3] = 'B';
@@ -26,8 +26,8 @@ void Board::display() const {
 }
 
 bool Board::isFull() const {
-    for (const auto& row : board) {
-        for (char cell : row) {
+    for (const auto& row : board) { // C++11 Syntax, für for-loop
+        for (char cell : row) { // C++11 Syntax, für for-loop
             if (cell == ' ') {
                 return false;
             }
@@ -67,14 +67,14 @@ void Board::makeMove(int row, int col, char currentPlayer, char opponentPiece) {
         for (int dc = -1; dc <= 1; ++dc) {
             if (dr == 0 && dc == 0) continue;
             int r = row + dr, c = col + dc;
-            vector<pair<int, int>> positionsToFlip;
+            vector<pair<int, int> > positionsToFlip; // Korrigierte Syntax
             while (r >= 0 && r < 8 && c >= 0 && c < 8 && board[r][c] == opponentPiece) {
                 positionsToFlip.emplace_back(r, c);
                 r += dr;
                 c += dc;
             }
             if (!positionsToFlip.empty() && r >= 0 && r < 8 && c >= 0 && c < 8 && board[r][c] == currentPlayer) {
-                for (const auto& pos : positionsToFlip) {
+                for (const auto& pos : positionsToFlip) { // C++11 Syntax, für for-loop
                     board[pos.first][pos.second] = currentPlayer;
                 }
             }
@@ -92,8 +92,8 @@ void Board::setPiece(int row, int col, char piece) {
 
 int Board::countPieces(char piece) const {
     int count = 0;
-    for (const auto& row : board) {
-        for (char cell : row) {
+    for (const auto& row : board) { // C++11 Syntax, für for-loop
+        for (char cell : row) { // C++11 Syntax, für for-loop
             if (cell == piece) {
                 count++;
             }

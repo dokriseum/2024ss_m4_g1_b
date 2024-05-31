@@ -2,10 +2,10 @@
 PROG = main
 
 # Compiler, der verwendet werden soll
-CC = gcc
+CC = g++
 
-# Compilerflags: Warnungen aktivieren und C++98-Standard erzwingen
-CFLAGS = -Wall -Wextra -std=c++98
+# Compilerflags: Warnungen aktivieren und C++11-Standard erzwingen
+CFLAGS = -Wall -Wextra -std=c++11
 
 # Linker-Flags
 LDFLAGS =
