@@ -38,11 +38,11 @@ $(OUTPUT_DIR):
 	mkdir -p $(OUTPUT_DIR)
 
 # Regel, um das Programm zu linken und das endgültige ausführbare Programm zu erstellen
-$(PROG): $(OBJS)
+$(PROG): $(OUTPUT_DIR)/main.o $(filter-out $(OUTPUT_DIR)/main.o, $(OBJS))
 	$(CC) $(CFLAGS) $(OBJS) -o $(OUTPUT_DIR)/$(PROG) $(LIBS)
 
-$(TEST_PROG): $(TEST_OBJS) $(OBJS)
-	$(CC) $(CFLAGS) $(TEST_OBJS) $(OBJS) -o $(OUTPUT_DIR)/$(TEST_PROG) $(LDFLAGS)
+$(TEST_PROG): $(TEST_OBJS) $(filter-out $(OUTPUT_DIR)/main.o, $(OBJS))
+	$(CC) $(CFLAGS) $(TEST_OBJS) $(filter-out $(OUTPUT_DIR)/main.o, $(OBJS)) -o $(OUTPUT_DIR)/$(TEST_PROG) $(LDFLAGS)
 
 # Regel, um Objektdateien zu kompilieren
 $(OUTPUT_DIR)/%.o: $(SRCDIR)/%.cpp

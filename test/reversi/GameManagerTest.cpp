@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "GameManager.h"
+#include "Menu.h"
 
 TEST(GameManagerTest, SwitchPlayer) {
     GameManager game;
@@ -17,4 +18,9 @@ TEST(GameManagerTest, IsGameOver) {
         }
     }
     EXPECT_TRUE(game.isGameOver());
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
