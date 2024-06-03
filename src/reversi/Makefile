@@ -30,3 +30,7 @@ clean:
 # Regel, um das Programm auszuführen
 run: $(PROG)
 	./$(PROG)
+
+# Regel, um die Tests auszuführen
+test: $(TEST_PROG)
+	./$(TEST_PROG)

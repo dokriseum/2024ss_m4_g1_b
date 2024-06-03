@@ -1,0 +1,10 @@
+#ifndef INC_2024SS_M4_G1_B_BOARDTEST_H
+#define INC_2024SS_M4_G1_B_BOARDTEST_H
+
+
+class BoardTest {
+
+};
+
+
+#endif //INC_2024SS_M4_G1_B_BOARDTEST_H
