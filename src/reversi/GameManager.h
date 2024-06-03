@@ -68,6 +68,16 @@ public:
      */
     void printCurrentPlayer() const;
 
+    // Add a public method to access the board (getter)
+    Board& getBoard() { return board; }
+
+    // Get current player
+    char getCurrentPlayer() const { return currentPlayer; }
+
+    // Make private methods accessible for testing purposes
+    void switchPlayer();
+    bool isGameOver() const;
+
 private:
     Board board; ///< The game board representing the current state of the game.
     Player* player; ///< Pointer to the human player.
@@ -75,19 +85,6 @@ private:
     char currentPlayer; ///< Character representing the current player ('B' or 'W').
     char playerPiece; ///< Character representing the human player's piece ('B' or 'W').
     char cpuPiece; ///< Character representing the computer player's piece ('B' or 'W').
-
-    /**
-     * @brief Switches the current player.
-     */
-    void switchPlayer();
-
-    /**
-     * @brief Checks if the game is over.
-     *
-     * The game is over if the board is full or no valid moves are possible.
-     * @return true if the game is over, otherwise false.
-     */
-    bool isGameOver() const;
 
     /**
      * @brief Allows the human player to choose their piece colour.

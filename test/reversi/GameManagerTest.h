@@ -2,9 +2,4 @@
 #define INC_2024SS_M4_G1_B_GAMEMANAGERTEST_H
 
 
-class GameManagerTest {
-
-};
-
-
 #endif //INC_2024SS_M4_G1_B_GAMEMANAGERTEST_H
