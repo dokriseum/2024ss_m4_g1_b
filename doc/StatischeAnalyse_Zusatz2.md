@@ -13,7 +13,7 @@
 2. **Durchführung der Analyse**:
    - Die Analyse wurde mit dem folgenden Befehl durchgeführt:
      ```bash
-     lizard -l cpp -L 20 /path/to/your/project > lizard_report.txt
+     lizard -l cpp -L 20 *.cpp > lizard_report.txt
      ```
 
 3. **Dokumentation der Ergebnisse**:
