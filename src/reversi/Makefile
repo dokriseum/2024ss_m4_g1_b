@@ -5,7 +5,7 @@ PROG = main
 CC = g++
 
 # Compilerflags: Warnungen aktivieren und C++11-Standard erzwingen
-CFLAGS = -Wall -Wextra -std=c++11
+CFLAGS = -Wall -Wextra -std=c++11 -g -O0 --coverage
 
 # Linker-Flags
 LDFLAGS =

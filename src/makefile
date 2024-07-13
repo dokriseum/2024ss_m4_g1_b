@@ -6,7 +6,7 @@ CC = gcc
 # Specify compiler flags to use for all compilations:
 # -Wall: Enables all compiler's warning messages
 # -Wextra: Enables additional warning messages
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -g -O0 --coverage
 
 # List of source files in the project
 SRCS = test_datei.c
