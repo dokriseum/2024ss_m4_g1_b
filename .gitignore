@@ -5,3 +5,11 @@
 src/reversi/main
 *.o
 src/reversi/*.o
+
+output
+*.gcno
+*.zip
+*.gcda
+
+123
+*.info

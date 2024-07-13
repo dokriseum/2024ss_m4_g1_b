@@ -1,124 +1,114 @@
-# Laborprotokoll zur Test-Coverage-Analyse
+```markdown
+# Laborprotokoll zur Test-Coverage
 
-## Einführung
+## Aufgabe
 
-Dieses Laborprotokoll dokumentiert die Durchführung einer Test-Coverage-Analyse für das Reversi-Projekt. Die Analyse wird mit einem Werkzeug zur Test-Coverage durchgeführt. Es werden drei Gruppen von Testfällen erstellt, um die folgenden Abdeckungsziele zu erreichen:
-1. Anweisungstest
-2. Zweigtest
-3. MCDC-Test (Modified Condition/Decision Coverage)
+1. **Installation eines Werkzeugs zur Prüfung der Test-Coverage**
+2. **Anwendung des Werkzeugs auf Tests einer mittelkomplexen Funktion**
+3. **Dokumentation der Vorgehensweise und Ergebnisse**
 
-## Aufgabe 1: Installation des Werkzeugs für Test-Coverage
+## 1. Installation eines Werkzeugs zur Prüfung der Test-Coverage
 
-### Werkzeug: `gcov` und `lcov`
+Zur Ermittlung der Test-Coverage wurde `gcov` und `lcov` verwendet. Diese Werkzeuge wurden gemäß den im Laborvortrag gegebenen Anleitungen installiert.
 
-`gcov` und `lcov` wurden ausgewählt, um die Test-Coverage zu messen. Beide Werkzeuge sind Teil der GNU Compiler Collection (GCC) und bieten detaillierte Informationen zur Codeabdeckung.
+### Installation von lcov
 
-### Installation
+   ```bash
+   brew install lcov
+   ```
 
-1. **Installation von GCC**:
-    - GCC wurde mittels Homebrew installiert:
-      ```bash
-      brew install gcc
-      ```
+## 2. Anwendung des Werkzeugs auf Tests einer mittelkomplexen Funktion
 
-2. **Installation von `lcov`**:
-    - `lcov` wurde ebenfalls mittels Homebrew installiert:
-      ```bash
-      brew install lcov
-      ```
-
-## Aufgabe 2: Durchführung der Test-Coverage-Analyse
+Die Tests wurden auf die Funktion `GameManager::play()` angewendet. Diese Funktion wurde gewählt, da sie eine mittlere Komplexität aufweist und mehrere Verzweigungen und Bedingungen enthält.
 
 ### Vorbereitung
 
-1. **Hinzufügen von Compiler-Flags und Optionen für gcov**:
-    - Der Code wurde mit den Flags `-g -O0 --coverage` kompiliert, um die Coverage-Informationen zu sammeln:
-      ```bash
-      g++ -Wall -Wextra -std=c++14 -g -O0 --coverage -Isrc/reversi -o output/main src/reversi/*.cpp -lgtest -lgtest_main -pthread
-      ```
+1. **Compiler-Flags und Optionen für gcov hinzufügen**
 
-2. **Ausführung der Tests**:
-    - Die Tests wurden ausgeführt, um die Coverage-Daten zu sammeln:
-      ```bash
-      ./output/runTests
-      ```
+   Die folgenden Flags wurden den Compiler-Optionen (CFLAG in Makefile) hinzugefügt:
 
-3. **Erzeugen der Coverage-Berichte**:
-    - Coverage-Daten wurden mit `lcov` erfasst:
-      ```bash
-      lcov --capture --directory . --output-file coverage.info --rc lcov_branch_coverage=1
-      ```
+    ```bash
+    -g -O0 --coverage
+    ```
 
-4. **Filterung der Daten**:
-    - Relevante Teile der Daten wurden extrahiert:
-      ```bash
-      lcov -e coverage.info -o coverage_filtered.info '<<Filter anpassen>>' --rc lcov_branch_coverage=1
-      ```
+2. **Kompilieren**
 
-5. **Erstellung des HTML-Reports**:
-    - Der HTML-Report wurde generiert:
-      ```bash
-      genhtml --branch-coverage --highlight --legend coverage.info --output-directory html --rc lcov_branch_coverage=1
-      ```
+   Das Projekt wurde mit den Coverage-Flags kompiliert:
 
-### Erstellung der Testfälle
+    ```bash
+    g++ -Wall -Wextra -std=c++14 -g -O0 --coverage -Isrc/reversi -o output/runTests src/reversi/*.cpp -lgtest -lgtest_main -pthread
+    ```
 
-#### Anweisungstest
+3. **Ausführen der Tests**
 
-Ziel: Jede Anweisung im Code soll mindestens einmal ausgeführt werden.
+   Die Tests wurden ausgeführt, um die Coverage-Daten zu generieren (*.gcno und *.gcda Dateien):
 
-**Beispieltest**:
-- Testen der `makeMove`-Funktion in verschiedenen Szenarien, um sicherzustellen, dass alle Anweisungen ausgeführt werden.
+    ```bash
+    ./output/runTests
+    ```
 
-#### Zweigtest
+### Durchführung der Coverage-Analyse
 
-Ziel: Jeder Zweig (true/false) in den bedingten Anweisungen soll mindestens einmal ausgeführt werden.
+1. **Einlesen der Coverage-Daten und Erstellen eines Reports**
 
-**Beispieltest**:
-- Testen der `isValidMove`-Funktion mit verschiedenen gültigen und ungültigen Zügen, um alle Zweige abzudecken.
+    ```bash
+    lcov --capture --directory . --output-file coverage.info --rc lcov_branch_coverage=1 --ignore-errors inconsistent,deprecated
+    ```
 
-#### MCDC-Test
+2. **Filtern der Daten aus der Report-Datei**
 
-Ziel: Jede Bedingung in einer bedingten Anweisung soll unabhängig voneinander getestet werden, um alle Kombinationen von Bedingungen abzudecken.
+    ```bash
+    lcov -e coverage.info -o coverage_filtered.info 'src/reversi/*' --rc lcov_branch_coverage=1 --ignore-errors deprecated
+    ```
 
-**Beispieltest**:
-- Testen der `isGameOver`-Funktion, indem verschiedene Zustände des Spielbretts (voll, leer, teilweise gefüllt) getestet werden, um alle Kombinationen von Bedingungen abzudecken.
+3. **Generieren eines HTML-Reports**
 
-### Auswertung der Coverage
+    ```bash
+    genhtml --branch-coverage --highlight --legend coverage_filtered.info --output-directory html --rc lcov_branch_coverage=1
+    ```
 
-1. **Erzeugen des Coverage-Berichts**:
-    - Die Coverage-Daten wurden mit `gcov` und `lcov` ausgewertet:
-      ```bash
-      lcov --capture --directory . --output-file coverage.info --rc lcov_branch_coverage=1
-      genhtml --branch-coverage --highlight --legend coverage.info --output-directory html --rc lcov_branch_coverage=1
-      ```
-
-2. **Anzeigen des Coverage-Berichts**:
-    - Der Coverage-Bericht wurde im Browser angezeigt:
-      ```bash
-      open html/index.html
-      ```
-
-## Aufgabe 3: Dokumentation der Ergebnisse
+## 3. Dokumentation der Vorgehensweise und Ergebnisse
 
 ### Anweisungstest
 
-- **Abdeckungsziel**: Jede Anweisung wurde mindestens einmal ausgeführt.
-- **Ergebnis**: Alle Anweisungen wurden erfolgreich abgedeckt.
-- **Screenshot**: ![Anweisungstest](screenshots/anweisungstest.png)
+Die Anweisungstests zielen darauf ab, jede Anweisung in der Funktion mindestens einmal auszuführen. Hier sind die durchgeführten Anweisungstests:
+
+- **Test 1:** Starten eines neuen Spiels und Überprüfen der Spielinitialisierung.
+- **Test 2:** Ausführen eines vollständigen Spiels mit zufälligen, aber gültigen Zügen.
+- **Test 3:** Beenden des Spiels nach einem vollen Spielfeld.
 
 ### Zweigtest
 
-- **Abdeckungsziel**: Jeder Zweig wurde mindestens einmal ausgeführt.
-- **Ergebnis**: Alle Zweige wurden erfolgreich abgedeckt.
-- **Screenshot**: ![Zweigtest](screenshots/zweigtest.png)
+Die Zweigtests zielen darauf ab, jede mögliche Verzweigung in der Funktion mindestens einmal zu durchlaufen. Hier sind die durchgeführten Zweigtests:
+
+- **Test 1:** Überprüfen, ob das Spiel korrekt zwischen Spieler und Computer wechselt.
+- **Test 2:** Überprüfen, ob das Spiel korrekt endet, wenn keine gültigen Züge mehr möglich sind.
+- **Test 3:** Überprüfen der Spielzustände nach jedem Zug.
 
 ### MCDC-Test
 
-- **Abdeckungsziel**: Jede Bedingung wurde unabhängig voneinander getestet.
-- **Ergebnis**: Alle Bedingungen und deren Kombinationen wurden erfolgreich abgedeckt.
-- **Screenshot**: ![MCDC-Test](screenshots/mcdc-test.png)
+Die MCDC-Tests (Modified Condition/Decision Coverage) zielen darauf ab, jede Bedingung in einer Verzweigung separat zu testen, um alle möglichen Kombinationen von Bedingungen abzudecken. Hier sind die durchgeführten MCDC-Tests:
 
-## Fazit
+- **Test 1:** Überprüfen, ob das Spiel korrekt erkennt, wenn ein Spieler keinen gültigen Zug mehr hat.
+- **Test 2:** Überprüfen der Spielzustände, wenn das Spiel in eine Sackgasse gerät.
+- **Test 3:** Überprüfen der Funktionalität, wenn der Spieler versucht, einen ungültigen Zug zu machen.
 
-Die Test-Coverage-Analyse mit `gcov` und `lcov` hat gezeigt, dass die implementierten Tests eine umfassende Abdeckung des Codes gewährleisten. Die Anweisungs-, Zweig- und MCDC-Tests haben alle definierten Abdeckungsziele erreicht. Die detaillierten Coverage-Berichte bieten wertvolle Einblicke in die getesteten und ungetesteten Teile des Codes, was zur Verbesserung der Testabdeckung und Codequalität beiträgt.
+### Ergebnisse der Coverage-Analyse
+
+#### Übersicht
+
+- **Zeilenabdeckung**: 65.5%
+- **Funktionsabdeckung**: 71.4%
+- **Zweigabdeckung**: 42.4%
+
+#### Detailansicht
+
+| Datei         | Zeilenabdeckung | Zweigabdeckung | Funktionsabdeckung |
+|---------------|-----------------|----------------|--------------------|
+| reversi/      | 65.5%           | 42.4%          | 71.4%              |
+
+### Bildschirmfoto der Coverage-Ergebnisse
+
+![Coverage-Ergebnisse](results.png)
+
+```

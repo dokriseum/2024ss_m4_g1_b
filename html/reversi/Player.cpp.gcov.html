@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - coverage_filtered.info - reversi/Player.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory reversi">reversi</a> - Player.cpp<span style="font-size: 80%;"> (source / <a href="Player.cpp.func-c.html" title="Click to go to function table">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">coverage_filtered.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryMed">89.7&nbsp;%</td>
+            <td class="headerCovTableEntry">39</td>
+            <td class="headerCovTableEntry">35</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2024-07-14 00:02:43</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryLo">72.7&nbsp;%</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">8</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+            | Branches:
+            <span class="coverLegendCov">+</span> taken
+            <span class="coverLegendNoCov">-</span> not taken
+            <span class="coverLegendNoCov">#</span> not executed
+</td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntryLo">55.6&nbsp;%</td>
+            <td class="headerCovTableEntry">54</td>
+            <td class="headerCovTableEntry">30</td>
+          </tr>
+                  <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">             Branch data     Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>                 :             : #include &quot;Player.h&quot;</span>
+<span id="L2"><span class="lineNum">       2</span>                 :             : #include &quot;GameManager.h&quot;</span>
+<span id="L3"><span class="lineNum">       3</span>                 :             : #include &lt;iostream&gt;</span>
+<span id="L4"><span class="lineNum">       4</span>                 :             : #include &lt;cctype&gt;</span>
+<span id="L5"><span class="lineNum">       5</span>                 :             : </span>
+<span id="L6"><span class="lineNum">       6</span>                 :             : extern GameManager* gameManager; // Vorwärtsdeklaration von gameManager</span>
+<span id="L7"><span class="lineNum">       7</span>                 :             : </span>
+<span id="L8"><span class="lineNum">       8</span>                 :<span class="tlaGNC tlaBgGNC">           4 : Player::Player(char piece) : piece(piece) {}</span></span>
+<span id="L9"><span class="lineNum">       9</span>                 :             : </span>
+<span id="L10"><span class="lineNum">      10</span>                 :<span class="tlaUNC tlaBgUNC">           0 : char Player::getPiece() const {</span></span>
+<span id="L11"><span class="lineNum">      11</span>                 :<span class="tlaUNC">           0 :     return piece;</span></span>
+<span id="L12"><span class="lineNum">      12</span>                 :             : }</span>
+<span id="L13"><span class="lineNum">      13</span>                 :             : </span>
+<span id="L14"><span class="lineNum">      14</span>                 :<span class="tlaGNC tlaBgGNC">           2 : Player::~Player() {</span></span>
+<span id="L15"><span class="lineNum">      15</span>                 :             :     // Leerer Destruktor für Basisklasse</span>
+<span id="L16"><span class="lineNum">      16</span>                 :<span class="tlaGNC">           2 : }</span></span>
+<span id="L17"><span class="lineNum">      17</span>                 :             : </span>
+<span id="L18"><span class="lineNum">      18</span>                 :<span class="tlaGNC">           4 : HumanPlayer::HumanPlayer(char piece) : Player(piece) {}</span></span>
+<span id="L19"><span class="lineNum">      19</span>                 :             : </span>
+<span id="L20"><span class="lineNum">      20</span>                 :<span class="tlaGNC">           3 : void HumanPlayer::makeMove(Board&amp; board) {</span></span>
+<span id="L21"><span class="lineNum">      21</span>                 :<span class="tlaGNC">           3 :     std::string move;</span></span>
+<span id="L22"><span class="lineNum">      22</span>                 :<span class="tlaGNC">           4 :     while (true) {</span></span>
+<span id="L23"><span class="lineNum">      23</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           4 :         std::cout &lt;&lt; &quot;Your turn. Enter your move (e.g., A1 or 's' to save the game, 'q' to quit): &quot;;</span></span>
+<span id="L24"><span class="lineNum">      24</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           3 :         std::cin &gt;&gt; move;</span></span>
+<span id="L25"><span class="lineNum">      25</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           3 :         if (move == &quot;s&quot;) {</span></span>
+<span id="L26"><span class="lineNum">      26</span>                 :<span class="tlaGNC">           1 :             std::string filename;</span></span>
+<span id="L27"><span class="lineNum">      27</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             std::cout &lt;&lt; &quot;Enter the filename to save the game: &quot;;</span></span>
+<span id="L28"><span class="lineNum">      28</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             std::cin &gt;&gt; filename;</span></span>
+<span id="L29"><span class="lineNum">      29</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             gameManager-&gt;saveGame(filename); // Verwenden Sie gameManager, um das Spiel zu speichern</span></span>
+<span id="L30"><span class="lineNum">      30</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC">           1 :             std::cout &lt;&lt; &quot;Game state saved to &quot; &lt;&lt; filename &lt;&lt; std::endl;</span></span>
+<span class="lineNum">        </span>          <span class="tlaGBC" title="Branch 4 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 5 was not taken"> - </span>]
+<span id="L31"><span class="lineNum">      31</span>                 :             :             continue; // Nach dem Speichern nach dem nächsten Zug fragen</span>
+<span id="L32"><span class="lineNum">      32</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           3 :         } else if (move == &quot;q&quot;) {</span></span>
+<span id="L33"><span class="lineNum">      33</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span>]:<span class="tlaGNC">           1 :             std::cout &lt;&lt; &quot;Returning to main menu...&quot; &lt;&lt; std::endl;</span></span>
+<span id="L34"><span class="lineNum">      34</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           1 :             exit(0); // Spiel beenden</span></span>
+<span id="L35"><span class="lineNum">      35</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span> :<span class="tlaGNC">           1 :         } else if (move.length() == 2 &amp;&amp; isalpha(move[0]) &amp;&amp; isdigit(move[1])) {</span></span>
+<span class="lineNum">        </span> <span class="tlaGBC" title="Branch 4 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 5 was not taken"> - </span><span class="tlaGBC" title="Branch 6 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 7 was not taken"> - </span><span class="tlaGBC" title="Branch 8 was taken 1 time"> + </span> 
+<span class="lineNum">        </span>             <span class="tlaUNC" title="Branch 9 was not taken"> - </span>]
+<span id="L36"><span class="lineNum">      36</span>                 :<span class="tlaGNC">           1 :             int row = move[1] - '1';</span></span>
+<span id="L37"><span class="lineNum">      37</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :             int col = toupper(move[0]) - 'A';</span></span>
+<span id="L38"><span class="lineNum">      38</span>   [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span><span class="tlaGBC" title="Branch 2 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 3 was not taken"> - </span>]:<span class="tlaGNC">           1 :             if (board.isValidMove(row, col, piece, piece == 'B' ? 'W' : 'B')) {</span></span>
+<span id="L39"><span class="lineNum">      39</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaUNC" title="Branch 1 was not taken"> - </span>]:<span class="tlaGNC">           1 :                 board.makeMove(row, col, piece, piece == 'B' ? 'W' : 'B');</span></span>
+<span id="L40"><span class="lineNum">      40</span>                 :<span class="tlaGNC">           1 :                 break;</span></span>
+<span id="L41"><span class="lineNum">      41</span>                 :             :             }</span>
+<span id="L42"><span class="lineNum">      42</span>                 :<span class="tlaUNC tlaBgUNC">           0 :         }</span></span>
+<span id="L43"><span class="lineNum">      43</span>   [<span class="tlaUNC" title="Branch 0 was not executed"> # </span><span class="tlaUNC" title="Branch 1 was not executed"> # </span><span class="tlaUNC" title="Branch 2 was not executed"> # </span><span class="tlaUNC" title="Branch 3 was not executed"> # </span>]:<span class="tlaUNC">           0 :         std::cout &lt;&lt; &quot;Invalid move! Please enter a valid move.&quot; &lt;&lt; std::endl;</span></span>
+<span id="L44"><span class="lineNum">      44</span>                 :             :     }</span>
+<span id="L45"><span class="lineNum">      45</span>                 :<span class="tlaGNC tlaBgGNC">           3 : }</span></span>
+<span id="L46"><span class="lineNum">      46</span>                 :             : </span>
+<span id="L47"><span class="lineNum">      47</span>                 :<span class="tlaGNC">           4 : ComputerPlayer::ComputerPlayer(char piece) : Player(piece) {}</span></span>
+<span id="L48"><span class="lineNum">      48</span>                 :             : </span>
+<span id="L49"><span class="lineNum">      49</span>                 :<span class="tlaGNC">           1 : void ComputerPlayer::makeMove(Board&amp; board) {</span></span>
+<span id="L50"><span class="lineNum">      50</span>         [<span class="tlaUNC" title="Branch 0 was not taken"> - </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">           3 :     for (int i = 0; i &lt; 8; ++i) {</span></span>
+<span id="L51"><span class="lineNum">      51</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          21 :         for (int j = 0; j &lt; 8; ++j) {</span></span>
+<span id="L52"><span class="lineNum">      52</span>         [<span class="tlaGBC" title="Branch 0 was taken 1 time"> + </span><span class="tlaGBC" title="Branch 1 was taken 1 time"> + </span>]:<span class="tlaGNC">          19 :             if (board.isValidMove(i, j, piece, piece == 'B' ? 'W' : 'B')) {</span></span>
+<span id="L53"><span class="lineNum">      53</span>                 :<span class="tlaGNC">           1 :                 board.makeMove(i, j, piece, piece == 'B' ? 'W' : 'B');</span></span>
+<span id="L54"><span class="lineNum">      54</span>                 :<span class="tlaGNC">           1 :                 return;</span></span>
+<span id="L55"><span class="lineNum">      55</span>                 :             :             }</span>
+<span id="L56"><span class="lineNum">      56</span>                 :<span class="tlaGNC">          18 :         }</span></span>
+<span id="L57"><span class="lineNum">      57</span>                 :<span class="tlaGNC">           2 :     }</span></span>
+<span id="L58"><span class="lineNum">      58</span>                 :<span class="tlaGNC">           1 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.1-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+genhtml --branch-coverage --highlight --legend coverage_filtered.info --output-directory html --rc lcov_branch_coverage=1
